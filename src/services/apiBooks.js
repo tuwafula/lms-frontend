@@ -33,6 +33,39 @@ export async function createBook(newBook) {
   }
 }
 
+export async function EditBook(newBook, id) {
+  try {
+    const res = await fetch(`${API_URL}/base/book-update/${id}`, {
+      method: "PUT",
+      body: newBook,
+    });
+
+    if (!res.ok) {
+      console.error(`POST request failed with status: ${res.status}`);
+      throw new Error("Book could not be edited");
+    }
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    console.error("Error during POST request:", error);
+    throw new Error("Book could not be edited");
+  }
+}
+
+// export async function EditBook(newBook, id) {
+//   const res = await fetch(`${API_URL}/base/book-update/${id}`, {
+//     method: "PUT",
+//     body: newBook,
+//   });
+
+//   const data = await res.json();
+
+//   return data;
+// }
+
 // export async function createBook(newBook) {
 //   const res = await fetch(`${API_URL}/base/create-book`, {
 //     method: "POST",

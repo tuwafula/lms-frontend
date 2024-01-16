@@ -1,9 +1,12 @@
 import { formatCurrency } from "../../utils/helpers";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
+import { HiPencil, HiTrash } from "react-icons/hi2";
 
 import styled from "styled-components";
 import { deleteBook } from "../../services/apiBooks";
+import { useState } from "react";
+import EditBookForm from "./EditBookForm";
 
 const TableRow = styled.div`
   display: grid;
@@ -53,6 +56,8 @@ const Rent = styled.div`
 `;
 
 function BookRow({ book }) {
+  const [showForm, setShowForm] = useState();
+
   const { id: bookId, title, author, image, stock, rent_fee } = book;
 
   const queryClient = useQueryClient();
@@ -68,21 +73,26 @@ function BookRow({ book }) {
     },
   });
   return (
-    <TableRow>
-      <Img src={image} />
-      <Title>{title}</Title>
-      <Author>{author}</Author>
-      {/* <Quantity>Total copies: {quantity}</Quantity> */}
-      <Stock>Available copies: {stock}</Stock>
-      <Rent>{formatCurrency(rent_fee)}</Rent>
-      <div>
-        <button>Edit </button>
+    <>
+      <TableRow>
+        <Img src={image} />
+        <Title>{title}</Title>
+        <Author>{author}</Author>
+        {/* <Quantity>Total copies: {quantity}</Quantity> */}
+        <Stock>Available copies: {stock}</Stock>
+        <Rent>{formatCurrency(rent_fee)}</Rent>
+        <div>
+          <button onClick={() => setShowForm((show) => !show)}>
+            <HiPencil />{" "}
+          </button>
 
-        <button onClick={() => mutate(bookId)} disabled={isDeleting}>
-          Delete
-        </button>
-      </div>
-    </TableRow>
+          <button onClick={() => mutate(bookId)} disabled={isDeleting}>
+            <HiTrash />
+          </button>
+        </div>
+      </TableRow>
+      {showForm && <EditBookForm bookToEdit={book} />}
+    </>
   );
 }
 

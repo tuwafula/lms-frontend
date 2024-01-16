@@ -8,7 +8,7 @@ import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 // import Textarea from "../../ui/Textarea";
-import { createBook } from "../../services/apiBooks";
+import { EditBook } from "../../services/apiBooks";
 
 const FormRow = styled.div`
   display: grid;
@@ -46,19 +46,19 @@ const Error = styled.span`
   color: var(--color-red-700);
 `;
 
-function CreateBookForm() {
+function EditBookForm({ bookToEdit }) {
   const { register, handleSubmit, reset, getValues, formState, control } =
-    useForm();
+    useForm({ defaultValues: bookToEdit });
 
   const { errors } = formState;
   console.log(errors);
 
   const queryClient = useQueryClient();
 
-  const { mutate, isLoading: isCreating } = useMutation({
-    mutationFn: createBook,
+  const { mutate, isLoading: isEditing } = useMutation({
+    mutationFn: ({ newBook, id }) => EditBook(newBook, id),
     onSuccess: () => {
-      toast.success("New book created successfully");
+      toast.success("Book successfully edited");
       queryClient.invalidateQueries({ queryKey: ["books"] });
       reset();
     },
@@ -68,14 +68,32 @@ function CreateBookForm() {
   function onSubmit(data) {
     const formData = new FormData();
 
-    formData.append("image", data.image[0], data.image[0].name);
-    formData.append("title", data.title);
-    formData.append("author", data.author);
-    formData.append("stock", data.stock);
-    formData.append("rent_fee", data.rent_fee);
-    formData.append("quantity", data.quantity);
+    // if (!data?.image?.startsWith("https")) {
+    //   formData.append("image", data.image[0], data.image[0].name);
+    // }
+    // formData.append("title", data.title);
+    // formData.append("author", data.author);
+    // formData.append("stock", data.stock);
+    // formData.append("rent_fee", data.rent_fee);
+    // formData.append("quantity", data.quantity);
 
-    mutate(formData);
+    if (typeof data.image === "string") {
+      formData.append("title", data.title);
+      formData.append("author", data.author);
+      formData.append("stock", data.stock);
+      formData.append("rent_fee", data.rent_fee);
+      formData.append("quantity", data.quantity);
+    } else {
+      formData.append("image", data.image[0], data.image[0].name);
+
+      formData.append("title", data.title);
+      formData.append("author", data.author);
+      formData.append("stock", data.stock);
+      formData.append("rent_fee", data.rent_fee);
+      formData.append("quantity", data.quantity);
+    }
+
+    mutate({ newBook: formData, id: data.id });
   }
 
   // function onError(errors) {
@@ -88,7 +106,7 @@ function CreateBookForm() {
         <Label htmlFor="title">Book Title</Label>
         <Input
           type="text"
-          disabled={isCreating}
+          disabled={isEditing}
           id="title"
           {...register("title", {
             required: "This field is required",
@@ -101,7 +119,7 @@ function CreateBookForm() {
         <Label htmlFor="author">Book Author</Label>
         <Input
           type="text"
-          disabled={isCreating}
+          disabled={isEditing}
           id="author"
           {...register("author", {
             required: "This field is required",
@@ -114,7 +132,7 @@ function CreateBookForm() {
         <Label htmlFor="quantity">Book quantity</Label>
         <Input
           type="number"
-          disabled={isCreating}
+          disabled={isEditing}
           id="quantity"
           {...register("quantity", {
             required: "This field is required",
@@ -127,13 +145,13 @@ function CreateBookForm() {
         <Label htmlFor="stock">Available stock</Label>
         <Input
           type="number"
-          disabled={isCreating}
+          disabled={isEditing}
           id="stock"
           {...register("stock", {
             required: "This field is required",
             validate: (value) =>
-              value === getValues().quantity ||
-              "Available stock should be the same as the book quantity",
+              value <= getValues().quantity ||
+              "Available stock should not be more than the book quantity",
           })}
         />
         {errors?.stock?.message && <Error>{errors.stock.message}</Error>}
@@ -143,7 +161,7 @@ function CreateBookForm() {
         <Label htmlFor="rent_fee">Rent fee per book</Label>
         <Input
           type="number"
-          disabled={isCreating}
+          disabled={isEditing}
           id="rent_fee"
           defaultValue={0}
           {...register("rent_fee", {
@@ -173,10 +191,10 @@ function CreateBookForm() {
         <Button variation="secondary" type="reset">
           Cancel
         </Button>
-        <Button disabled={isCreating}>Add book</Button>
+        <Button disabled={isEditing}>Edit book</Button>
       </FormRow>
     </Form>
   );
 }
 
-export default CreateBookForm;
+export default EditBookForm;
