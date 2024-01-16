@@ -46,7 +46,7 @@ const Error = styled.span`
   color: var(--color-red-700);
 `;
 
-function CreateBookForm() {
+function CreateBookForm({ onCloseModal }) {
   const { register, handleSubmit, reset, getValues, formState, control } =
     useForm();
 
@@ -61,6 +61,7 @@ function CreateBookForm() {
       toast.success("New book created successfully");
       queryClient.invalidateQueries({ queryKey: ["books"] });
       reset();
+      onCloseModal();
     },
     onError: (err) => toast.error(err.message),
   });
@@ -170,7 +171,7 @@ function CreateBookForm() {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button variation="secondary" type="reset" onClick={onCloseModal}>
           Cancel
         </Button>
         <Button disabled={isCreating}>Add book</Button>

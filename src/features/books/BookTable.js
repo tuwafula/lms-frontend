@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { getBooks } from "../../services/apiBooks";
 import Spinner from "../../ui/Spinner";
 import BookRow from "./BookRow";
+import { useSearchParams } from "react-router-dom";
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -31,13 +32,20 @@ const TableHeader = styled.header`
 `;
 
 function BookTable() {
+  const [searchParams] = useSearchParams();
+
+  const val1 = "title";
+  const val2 = "author";
+  const filterValue = searchParams.get(val1) || searchParams.get(val2);
+  console.log(filterValue);
+
   const {
     isLoading,
     data: books,
     error,
   } = useQuery({
-    queryKey: ["books"],
-    queryFn: getBooks,
+    queryKey: ["books", filterValue],
+    queryFn: () => getBooks(filterValue),
   });
 
   if (isLoading) return <Spinner />;

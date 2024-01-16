@@ -46,7 +46,7 @@ const Error = styled.span`
   color: var(--color-red-700);
 `;
 
-function EditBookForm({ bookToEdit }) {
+function EditBookForm({ bookToEdit, onCloseModal }) {
   const { register, handleSubmit, reset, getValues, formState, control } =
     useForm({ defaultValues: bookToEdit });
 
@@ -61,6 +61,7 @@ function EditBookForm({ bookToEdit }) {
       toast.success("Book successfully edited");
       queryClient.invalidateQueries({ queryKey: ["books"] });
       reset();
+      onCloseModal();
     },
     onError: (err) => toast.error(err.message),
   });
@@ -188,7 +189,7 @@ function EditBookForm({ bookToEdit }) {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button variation="secondary" type="reset" onClick={onCloseModal}>
           Cancel
         </Button>
         <Button disabled={isEditing}>Edit book</Button>
