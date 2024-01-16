@@ -1,8 +1,14 @@
 const API_URL = `https://lms-render-0tx1.onrender.com`;
 
-export async function getBooks() {
+export async function getBooks(filterValue) {
   try {
-    const res = await fetch(`${API_URL}/base/books`);
+    let url = `${API_URL}/base/books`;
+
+    if (filterValue) {
+      url += `?search=${filterValue}`;
+    }
+
+    const res = await fetch(url);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -10,6 +16,17 @@ export async function getBooks() {
     throw new Error("Books could not be fetched");
   }
 }
+
+// export async function getBooks() {
+//   try {
+//     const res = await fetch(`${API_URL}/base/books`);
+//     const data = await res.json();
+//     return data;
+//   } catch (error) {
+//     console.error(error);
+//     throw new Error("Books could not be fetched");
+//   }
+// }
 
 export async function createBook(newBook) {
   try {
