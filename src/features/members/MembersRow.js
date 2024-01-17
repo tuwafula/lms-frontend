@@ -1,8 +1,12 @@
 import { formatCurrency } from "../../utils/helpers";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
+import { HiPencil, HiTrash } from "react-icons/hi2";
+import { deleteMember } from "../../services/apiMembers";
 
 import styled from "styled-components";
+import { useState } from "react";
+import EditMemberForm from "./EditMemberForm";
 
 const TableRow = styled.div`
   display: grid;
@@ -30,11 +34,6 @@ const Email = styled.div`
   font-family: "Sono";
 `;
 
-const Stock = styled.div`
-  font-family: "Sono";
-  font-weight: 600;
-`;
-
 const OutstandingDebt = styled.div`
   font-family: "Sono";
   font-weight: 500;
@@ -47,7 +46,22 @@ const ButtonRow = styled.div`
 `;
 
 function MembersRow({ member }) {
+  const [showForm, setShowForm] = useState(false);
+
   const { id: memberId, name, email, outstanding_debt } = member;
+
+  const queryClient = useQueryClient();
+
+  const { mutate, isLoading: isDeleting } = useMutation({
+    mutationFn: deleteMember,
+    onSuccess: () => {
+      toast.success("Member deleted successfully");
+      queryClient.invalidateQueries({
+        queryKey: ["members"],
+      });
+    },
+    onError: (err) => toast.error(err.message),
+  });
 
   return (
     <>
@@ -55,8 +69,23 @@ function MembersRow({ member }) {
         <Name>{name}</Name>
         <Email>{email}</Email>
         <OutstandingDebt>{formatCurrency(outstanding_debt)}</OutstandingDebt>
-        <ButtonRow></ButtonRow>
+        <ButtonRow>
+          <button onClick={() => setShowForm((state) => !state)}>
+            <HiPencil />
+          </button>
+
+          <button
+            disabled={isDeleting}
+            onClick={() => {
+              console.log("deleting");
+              mutate(memberId);
+            }}
+          >
+            <HiTrash />
+          </button>
+        </ButtonRow>
       </TableRow>
+      {showForm && <EditMemberForm memberToEdit={member} id={memberId} />}
     </>
   );
 }

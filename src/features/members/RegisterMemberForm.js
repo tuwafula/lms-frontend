@@ -44,7 +44,7 @@ const Error = styled.span`
   color: var(--color-red-700);
 `;
 
-function CreateBookForm({ onCloseModal }) {
+function RegisterMemberForm({ onCloseModal }) {
   const { handleSubmit, register, reset, formState } = useForm();
 
   const queryClient = useQueryClient();
@@ -127,4 +127,4 @@ function CreateBookForm({ onCloseModal }) {
   );
 }
 
-export default CreateBookForm;
+export default RegisterMemberForm;

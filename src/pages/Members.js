@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
-import RegisterMember from "../features/members/RegisterMember";
+import RegisterMemberForm from "../features/members/RegisterMemberForm";
 
 import MembersTable from "../features/members/MembersTable";
 import Button from "../ui/Button";
@@ -23,7 +23,7 @@ function Members() {
             Add Member
           </Button>
         </div>
-        {showForm && <RegisterMember />}
+        {showForm && <RegisterMemberForm />}
       </Row>
     </>
   );
