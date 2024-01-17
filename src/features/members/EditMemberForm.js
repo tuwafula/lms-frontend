@@ -59,6 +59,7 @@ function EditMemberForm({ memberToEdit, onCloseModal, id }) {
         queryKey: ["members"],
       });
       reset();
+      onCloseModal();
     },
     onError: (err) => toast.error(err.message),
   });
