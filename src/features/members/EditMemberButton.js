@@ -2,15 +2,16 @@ import { useState } from "react";
 import Modal from "../../ui/Modal";
 import EditMemberForm from "./EditMemberForm";
 import { HiPencil } from "react-icons/hi2";
+import ButtonEdit from "../../ui/ButtonEdit";
 
 function EditMemberButton({ memberToEdit, id }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <button onClick={() => setShowModal((state) => !state)}>
+      <ButtonEdit onClick={() => setShowModal((state) => !state)}>
         <HiPencil />
-      </button>
+      </ButtonEdit>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditMemberForm

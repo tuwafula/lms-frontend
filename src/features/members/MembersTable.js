@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { getMembers } from "../../services/apiMembers";
 import Spinner from "../../ui/Spinner";
 import MembersRow from "./MembersRow";
+import { useSearchParams } from "react-router-dom";
 // import { useSearchParams } from "react-router-dom";
 
 const Table = styled.div`
@@ -31,13 +32,13 @@ const TableHeader = styled.header`
 `;
 
 function MembersTable() {
-  //   const [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
-  //   const filterValue = searchParams.get("searchTerm");
+  const filterValue = searchParams.get("searchTerm");
 
   const { isLoading, data: members } = useQuery({
-    queryKey: ["members"],
-    queryFn: getMembers,
+    queryKey: ["members", filterValue],
+    queryFn: () => getMembers(filterValue),
   });
 
   if (isLoading) return <Spinner />;

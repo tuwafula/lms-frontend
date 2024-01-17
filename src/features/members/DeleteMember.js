@@ -2,18 +2,19 @@ import { useState } from "react";
 import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import { HiTrash } from "react-icons/hi2";
+import ButtonDelete from "../../ui/ButtonDelete";
 
 function DeleteMember({ mutate, disabled, id }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <button
+      <ButtonDelete
         // disabled={isDeleting}
         onClick={() => setShowModal((state) => !state)}
       >
         <HiTrash />
-      </button>
+      </ButtonDelete>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <ConfirmDelete
