@@ -11,23 +11,10 @@ const Input = styled.input`
   box-shadow: var(--shadow-sm);
 `;
 
-const StyledOption = styled.option`
-  color: var(--color-brand-50);
-  background-color: var(--color-brand-600);
-`;
-
 const StyledForm = styled.form`
   display: flex;
   flex-direction: row;
   gap: 1.2rem;
-`;
-
-const FormRow = styled.div`
-  display: grid;
-  align-items: center;
-  grid-template-columns: 24rem 1fr 1.2fr;
-  gap: 2.4rem;
-  padding: 1.2rem 0;
 `;
 
 const StyledLabel = styled.label`

@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
 

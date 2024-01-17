@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Modal from "../../ui/Modal";
-import Button from "../../ui/Button";
 import EditBookForm from "./EditBookForm";
 
 import { HiPencil } from "react-icons/hi2";
