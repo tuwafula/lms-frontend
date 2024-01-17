@@ -34,10 +34,7 @@ const TableHeader = styled.header`
 function BookTable() {
   const [searchParams] = useSearchParams();
 
-  const val1 = "title";
-  const val2 = "author";
-  const filterValue = searchParams.get(val1) || searchParams.get(val2);
-  console.log(filterValue);
+  const filterValue = searchParams.get("searchTerm");
 
   const {
     isLoading,
