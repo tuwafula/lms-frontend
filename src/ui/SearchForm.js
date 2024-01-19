@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import styled from "styled-components";
-import Button from "../../ui/Button";
+import Button from "./Button";
 import { useSearchParams } from "react-router-dom";
 
 const Input = styled.input`
@@ -21,7 +21,7 @@ const StyledLabel = styled.label`
   margin-right: 10px;
 `;
 
-function SearchForm() {
+function SearchForm({ title }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const { control, handleSubmit } = useForm();
 
@@ -33,7 +33,7 @@ function SearchForm() {
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <StyledLabel>Search By Author / Book Title:</StyledLabel>
+        <StyledLabel>{title}:</StyledLabel>
         <Controller
           name="searchTerm"
           control={control}

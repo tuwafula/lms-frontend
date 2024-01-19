@@ -1,8 +1,14 @@
 const API_URL = "https://lms-render-0tx1.onrender.com";
 
-export async function getMembers() {
+export async function getMembers(filterValue) {
   try {
-    const res = await fetch(`${API_URL}/base/members`);
+    let url = `${API_URL}/base/members`;
+
+    if (filterValue) {
+      url += `?search=${filterValue}`;
+    }
+
+    const res = await fetch(url);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -65,7 +71,7 @@ export async function editMember(member, id) {
     });
 
     if (!res.ok) {
-      console.error(`POST request failed with status: ${res.status}`);
+      console.error(`PUT request failed with status: ${res.status}`);
       throw new Error("Member could not be edited");
     }
 

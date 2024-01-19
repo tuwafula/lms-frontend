@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
 import styled from "styled-components";
-import { getMembers } from "../../services/apiMembers";
 import Spinner from "../../ui/Spinner";
-import MembersRow from "./MembersRow";
-import { useSearchParams } from "react-router-dom";
-// import { useSearchParams } from "react-router-dom";
+import { getTransactions } from "../../services/apiTransactions";
+import TransactionsRow from "./TransactionsRow";
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -18,7 +16,7 @@ const Table = styled.div`
 
 const TableHeader = styled.header`
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 0.6fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 0.6fr 0.6fr 0.6fr;
   column-gap: 2.4rem;
   align-items: center;
 
@@ -31,30 +29,33 @@ const TableHeader = styled.header`
   padding: 1.6rem 2.4rem;
 `;
 
-function MembersTable() {
-  const [searchParams] = useSearchParams();
-
-  const filterValue = searchParams.get("searchTerm");
-
-  const { isLoading, data: members } = useQuery({
-    queryKey: ["members", filterValue],
-    queryFn: () => getMembers(filterValue),
+function TransactionsTable() {
+  const { isLoading, data: transactions } = useQuery({
+    queryKey: ["transactions"],
+    queryFn: getTransactions,
   });
 
   if (isLoading) return <Spinner />;
 
+  //   console.log(transactions);
+  //   console.log(transactions[0].book);
+  //   console.log(transactions[0].member);
+
   return (
     <Table role="table">
       <TableHeader role="row">
-        <div>Name</div>
-        <div>Email</div>
-        <div>Outstanding debt</div>
+        <div>Book</div>
+        <div>Member</div>
+        <div>Date of issue</div>
+        <div>Return Date</div>
+        <div>Fee Charged</div>
+        <div>Status</div>
       </TableHeader>
-      {members.map((member) => (
-        <MembersRow member={member} key={member.id} />
+      {transactions.map((transaction) => (
+        <TransactionsRow transaction={transaction} key={transaction.id} />
       ))}
     </Table>
   );
 }
 
-export default MembersTable;
+export default TransactionsTable;

@@ -57,6 +57,7 @@ function RegisterMemberForm({ onCloseModal }) {
         queryKey: ["members"],
       });
       reset();
+      onCloseModal();
     },
     onError: (err) => toast.error(err.message),
   });

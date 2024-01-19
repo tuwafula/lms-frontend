@@ -59,6 +59,7 @@ function EditMemberForm({ memberToEdit, onCloseModal, id }) {
         queryKey: ["members"],
       });
       reset();
+      onCloseModal();
     },
     onError: (err) => toast.error(err.message),
   });
@@ -90,7 +91,7 @@ function EditMemberForm({ memberToEdit, onCloseModal, id }) {
         <Input
           type="email"
           disabled={isEditing}
-          id="author"
+          id="email"
           {...register("email", {
             required: "This field is required",
           })}

@@ -1,10 +1,17 @@
+import TransactionsTable from "../features/transactions/TransactionsTable";
 import Heading from "../ui/Heading";
+import Row from "../ui/Row";
 
 function Transactions() {
   return (
-    <div>
-      <Heading as="h1">All Transctions</Heading>
-    </div>
+    <>
+      <Row type="horizontal">
+        <Heading as="h1">All Transactions</Heading>
+      </Row>
+      <Row>
+        <TransactionsTable />
+      </Row>
+    </>
   );
 }
 

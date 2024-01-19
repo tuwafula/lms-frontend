@@ -1,7 +1,7 @@
-// import { formatDistance, parseISO } from 'date-fns';
-// import { differenceInDays } from 'date-fns/esm';
+// import { formatDistance, parseISO } from "date-fns";
+// import { differenceInDays } from "date-fns";
 
-// // We want to make this function work for both Date objects and strings (which come from Supabase)
+// // // We want to make this function work for both Date objects and strings (which come from Supabase)
 // export const subtractDates = (dateStr1, dateStr2) =>
 //   differenceInDays(parseISO(String(dateStr1)), parseISO(String(dateStr2)));
 
@@ -23,6 +23,14 @@
 //   else today.setUTCHours(0, 0, 0, 0);
 //   return today.toISOString();
 // };
+
+export function calculateDateDifferenceInDays(date1, date2) {
+  const timeDifference = new Date(date2).getTime() - new Date(date1).getTime();
+
+  const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+  return daysDifference;
+}
 
 export const formatCurrency = (value) =>
   new Intl.NumberFormat("en", { style: "currency", currency: "KES" }).format(
