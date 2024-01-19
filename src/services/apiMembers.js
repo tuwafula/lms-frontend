@@ -71,7 +71,7 @@ export async function editMember(member, id) {
     });
 
     if (!res.ok) {
-      console.error(`POST request failed with status: ${res.status}`);
+      console.error(`PUT request failed with status: ${res.status}`);
       throw new Error("Member could not be edited");
     }
 
