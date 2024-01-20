@@ -57,7 +57,7 @@ function IssueReturnForm({ transaction, onCloseModal }) {
 
   const days = calculateDateDifferenceInDays(issue_date, today);
 
-  const rentCharged = days * Number(rent_fee);
+  const rentCharged = days * Number(rent_fee) || Number(rent_fee);
 
   const queryClient = useQueryClient();
 

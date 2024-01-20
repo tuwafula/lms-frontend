@@ -61,3 +61,28 @@ export async function issueBookReturn(newTransaction, id) {
     throw new Error("Member could not be edited");
   }
 }
+
+export async function createTransaction(newTransaction) {
+  try {
+    const res = await fetch(`${API_URL}/base/create-transaction`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newTransaction),
+    });
+
+    if (!res.ok) {
+      console.error(`POST request failed with status: ${res.status}`);
+      throw new Error("Book could not be issued");
+    }
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    console.error("Error during POST request:", error);
+    throw new Error("Book could not be issued");
+  }
+}

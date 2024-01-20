@@ -17,6 +17,17 @@ export async function getMembers(filterValue) {
   }
 }
 
+export async function getMember(id) {
+  try {
+    const res = await fetch(`${API_URL}/base/member/${id}`);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Member could not be fetched");
+  }
+}
+
 export async function createMember(member) {
   try {
     const res = await fetch(`${API_URL}/base/create-member`, {
