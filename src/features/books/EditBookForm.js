@@ -69,15 +69,6 @@ function EditBookForm({ bookToEdit, onCloseModal }) {
   function onSubmit(data) {
     const formData = new FormData();
 
-    // if (!data?.image?.startsWith("https")) {
-    //   formData.append("image", data.image[0], data.image[0].name);
-    // }
-    // formData.append("title", data.title);
-    // formData.append("author", data.author);
-    // formData.append("stock", data.stock);
-    // formData.append("rent_fee", data.rent_fee);
-    // formData.append("quantity", data.quantity);
-
     if (typeof data.image === "string") {
       formData.append("title", data.title);
       formData.append("author", data.author);

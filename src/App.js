@@ -10,6 +10,9 @@ import Members from "./pages/Members";
 import Transactions from "./pages/Transactions";
 import AppLayout from "./ui/AppLayout";
 import PageNotFound from "./ui/PageNotFound";
+import Login from "./ui/Login";
+import ProtectedRoute from "./ui/ProtectedRoute";
+import SignupForm from "./features/authentication/SignupForm";
 // import Dashboard from "./pages/Dashboard";
 // import Dashboard from "./pages/Dashboard";
 // import Dashboard from "./pages/Dashboard";
@@ -32,13 +35,21 @@ function App() {
       <GlobalStyles />
       <BrowserRouter>
         <Routes>
-          <Route element={<AppLayout />}>
+          <Route
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Navigate replace to="dashboard" />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="books" element={<Books />} />
             <Route path="members" element={<Members />} />
             <Route path="transactions" element={<Transactions />} />
+            <Route path="register" element={<SignupForm />} />
           </Route>
+          <Route path="login" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
