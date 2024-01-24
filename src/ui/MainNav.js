@@ -4,6 +4,7 @@ import {
   HiOutlineBookOpen,
   HiOutlineCurrencyDollar,
   HiOutlineHome,
+  HiOutlineUser,
   HiOutlineUsers,
 } from "react-icons/hi2";
 
@@ -78,6 +79,12 @@ function MainNav() {
           <StyledNavLink to="/transactions">
             <HiOutlineCurrencyDollar />
             <span>Transactions</span>
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink to="/register">
+            <HiOutlineUser />
+            <span>Register user</span>
           </StyledNavLink>
         </li>
         {/* <li>
