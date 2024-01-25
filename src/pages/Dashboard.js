@@ -1,10 +1,15 @@
+import DashboardLayout from "../features/dashboard/DashboardLayout";
 import Heading from "../ui/Heading";
+import Row from "../ui/Row";
 
 function Dashboard() {
   return (
-    <div>
-      <Heading as="h1">I am in the dashboard bro</Heading>
-    </div>
+    <>
+      <Row>
+        <Heading as="h1">Dashboard</Heading>
+      </Row>
+      <DashboardLayout />
+    </>
   );
 }
 

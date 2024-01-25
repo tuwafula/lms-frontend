@@ -1,8 +1,8 @@
-import { HiOutlineBookOpen } from "react-icons/hi2";
 import styled from "styled-components";
 
 const StyledLogo = styled.div`
   text-align: center;
+  margin-bottom: 3.2rem;
 `;
 
 const Img = styled.img`
@@ -13,7 +13,7 @@ const Img = styled.img`
 function Logo() {
   return (
     <StyledLogo>
-      <Img src="/logo512.png" alt="Logo" />
+      <Img src="/logo-d.png" alt="Logo" />
     </StyledLogo>
   );
 }
