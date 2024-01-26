@@ -4,7 +4,7 @@ import Stats from "./Stats";
 const StyledDashboardLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto 34rem auto;
+  grid-template-rows: 1fr 1fr 1fr;
   gap: 2.4rem;
 `;
 
