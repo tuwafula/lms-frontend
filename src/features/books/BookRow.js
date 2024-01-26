@@ -78,7 +78,8 @@ function BookRow({ book }) {
   return (
     <>
       <TableRow>
-        <Img src={image} />
+        {/* https://res.cloudinary.com/dz9wzvgbd/image/upload/v1706262294/unwckx326wtgpobcil4k.jpg */}
+        <Img src={`https://res.cloudinary.com/dz9wzvgbd/${image}`} />
         <Title>{title}</Title>
         <Author>{author}</Author>
         {/* <Quantity>Total copies: {quantity}</Quantity> */}

@@ -35,7 +35,7 @@ function Header() {
 
   return (
     <StyledHeader>
-      <Avatar src={`https://lms-render-0tx1.onrender.com${user.avatar}`} />
+      <Avatar src={`https://res.cloudinary.com/dz9wzvgbd/${user.avatar}`} />
       <Span>{user.first_name}</Span>
       <Span>{user.last_name}</Span>
       <Logout />
