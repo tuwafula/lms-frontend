@@ -8,6 +8,7 @@ import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import { calculateDateDifferenceInDays } from "../../utils/helpers";
 import { issueBookReturn } from "../../services/apiTransactions";
+import { HiOutlineArrowPathRoundedSquare } from "react-icons/hi2";
 
 const FormRow = styled.div`
   display: grid;
@@ -53,6 +54,8 @@ function IssueReturnForm({ transaction, onCloseModal }) {
   const { id, member, book, issue_date } = transaction;
   const { rent_fee } = book;
 
+  const { image, ...others } = book;
+
   const today = new Date();
 
   const days = calculateDateDifferenceInDays(issue_date, today);
@@ -75,7 +78,7 @@ function IssueReturnForm({ transaction, onCloseModal }) {
 
   function onSubmit(data) {
     const updatedData = {
-      book: { ...book },
+      book: { ...others },
       ...data,
       member: {
         ...member,
@@ -83,6 +86,7 @@ function IssueReturnForm({ transaction, onCloseModal }) {
       },
       return_date: new Date().toISOString().split("T")[0],
     };
+    // console.log(updatedData);
     mutate({ updatedData, id });
   }
 
