@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 import Logout from "../features/authentication/Logout";
 import { getCurrentUser } from "../services/apiAuth";
+import { useEffect } from "react";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -28,10 +30,15 @@ const Span = styled.span`
 `;
 
 function Header() {
-  const { data: user } = useQuery({
+  const navigate = useNavigate();
+  const { data: user, isLoading } = useQuery({
     queryKey: ["user"],
     queryFn: getCurrentUser,
   });
+
+  useEffect(() => {
+    if (user === null && !isLoading) navigate("/login");
+  }, [isLoading, navigate, user]);
 
   return (
     <StyledHeader>
