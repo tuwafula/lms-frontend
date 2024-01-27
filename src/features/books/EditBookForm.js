@@ -85,6 +85,8 @@ function EditBookForm({ bookToEdit, onCloseModal }) {
       formData.append("quantity", data.quantity);
     }
 
+    console.log(formData);
+
     mutate({ newBook: formData, id: data.id });
   }
 
