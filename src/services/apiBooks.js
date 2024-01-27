@@ -17,17 +17,6 @@ export async function getBooks(filterValue) {
   }
 }
 
-// export async function getBooks() {
-//   try {
-//     const res = await fetch(`${API_URL}/base/books`);
-//     const data = await res.json();
-//     return data;
-//   } catch (error) {
-//     console.error(error);
-//     throw new Error("Books could not be fetched");
-//   }
-// }
-
 export async function createBook(newBook) {
   try {
     const res = await fetch(`${API_URL}/base/create-book`, {
@@ -71,29 +60,6 @@ export async function EditBook(newBook, id) {
     throw new Error("Book could not be edited");
   }
 }
-
-// export async function EditBook(newBook, id) {
-//   const res = await fetch(`${API_URL}/base/book-update/${id}`, {
-//     method: "PUT",
-//     body: newBook,
-//   });
-
-//   const data = await res.json();
-
-//   return data;
-// }
-
-// export async function createBook(newBook) {
-//   const res = await fetch(`${API_URL}/base/create-book`, {
-//     method: "POST",
-//     body: newBook,
-//   });
-
-//   if (!res.ok) return;
-//   const data = await res.json();
-
-//   return data;
-// }
 
 export async function deleteBook(id) {
   try {

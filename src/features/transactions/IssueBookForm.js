@@ -47,8 +47,6 @@ const Label = styled.label`
 `;
 
 function IssueBookForm({ onCloseModal }) {
-  //   const { reset, handleSubmit, register } = useForm();
-
   const { data: books } = useQuery({
     queryKey: ["books"],
     queryFn: () => getBooks(),

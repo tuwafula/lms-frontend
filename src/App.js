@@ -13,11 +13,6 @@ import PageNotFound from "./ui/PageNotFound";
 import Login from "./ui/Login";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import SignupForm from "./features/authentication/SignupForm";
-// import Dashboard from "./pages/Dashboard";
-// import Dashboard from "./pages/Dashboard";
-// import Dashboard from "./pages/Dashboard";
-// import Dashboard from "./pages/Dashboard";
-// import Dashboard from "./pages/Dashboard";
 
 // setting up react query
 const queryClient = new QueryClient({

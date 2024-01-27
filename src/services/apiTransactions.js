@@ -37,31 +37,6 @@ export async function issueBookReturn(newTransaction, id) {
   }
 }
 
-// export async function issueBookReturn(newTransaction, id) {
-//   try {
-//     const res = await fetch(`${API_URL}/base/transaction-update/${id}`, {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(newTransaction),
-//     });
-
-//     if (!res.ok) {
-//       console.error(`PUT request failed with status: ${res.status}`);
-//       throw new Error("Book return could not be issued");
-//     }
-
-//     const data = await res.json();
-
-//     return data;
-//   } catch (error) {
-//     console.log(error);
-//     console.error("Error during POST request:", error);
-//     throw new Error("Book return could not be issued");
-//   }
-// }
-
 export async function createTransaction(newTransaction) {
   try {
     const res = await fetch(`${API_URL}/base/create-transaction`, {
