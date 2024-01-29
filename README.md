@@ -1,19 +1,24 @@
 # Library Management System Web Application
 
 This is a Library Management System intended to streamline the operations of a library. The application is designed for exclusive use by librarians enabling them to manage books, and lend to members.
+
 ![Screenshot from 2024-01-29 08-41-18](https://github.com/tuwafula/lms-frontend/assets/84623103/c89b15c3-9687-4908-ab45-0984f88fcd16)
+
 ![Screenshot from 2024-01-29 08-43-14](https://github.com/tuwafula/lms-frontend/assets/84623103/c2ab3e1f-8fce-4dd6-95bc-390e3eb9a3f1)
 
 
 ## Features
 - `Books` - User can perform general CRUD operations on books.
+  
   ![Screenshot from 2024-01-29 09-57-08](https://github.com/tuwafula/lms-frontend/assets/84623103/6ea67991-d8d5-4572-a5cf-12efc7d56e35)
   
 - `Members` - User can perform CRUD operations on members.
+
   ![Screenshot from 2024-01-29 08-45-30](https://github.com/tuwafula/lms-frontend/assets/84623103/381a599a-7385-48a2-9dda-9db1eb639fe2)
 
 - `Transactions` - User can issue book to a member thus initiating a transaction.
-![Screenshot from 2024-01-29 08-46-46](https://github.com/tuwafula/lms-frontend/assets/84623103/c6b5265e-575d-4401-bfdf-0d185b8ffa2a)
+  
+  ![Screenshot from 2024-01-29 08-46-46](https://github.com/tuwafula/lms-frontend/assets/84623103/c6b5265e-575d-4401-bfdf-0d185b8ffa2a)
 
 ## Use Cases
 ### CRUD operations 
@@ -47,8 +52,4 @@ The application's frontend and backend are built separately. The backend is buil
 - The frontend is hosted on netlify.com while the backend is hosted on render.com
 - Checkout the app: https://lms-net.netlify.app
 
-Guidelines for contributing to the project, including how to report issues and submit pull requests.
 
-## License
-
-This project is licensed under the [License Name](link-to-license).
