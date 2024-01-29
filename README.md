@@ -50,6 +50,7 @@ Details about configuring the project, including environment variables, configur
 ## Additional information
 The application's frontend and backend are built separately. The backend is built using the Django-restframework while the frontend is built using React.js
 - The frontend is hosted on netlify.com while the backend is hosted on render.com
+- github repo for the backend: https://github.com/tuwafula/lms-api
 - Checkout the app: https://lms-net.netlify.app
 
 
