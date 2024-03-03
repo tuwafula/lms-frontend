@@ -26,8 +26,8 @@ const Label = styled.label`
 `;
 
 function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("doe@gmail.com");
+  const [password, setPassword] = useState("doe1234");
 
   const navigate = useNavigate();
 
